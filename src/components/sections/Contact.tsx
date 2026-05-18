@@ -84,7 +84,7 @@ export function Contact() {
           <Button 
             variant="secondary" 
             size="lg"
-            href="mailto:dungnv.ith@email.com"
+            href="mailto:junndung2005@gmail.com"
             icon="arrow"
           >
             Send me a message
@@ -109,7 +109,7 @@ export function Contact() {
                 <Github className="w-5 h-5" />
               </a>
               <a
-                href="mailto:dungnv.ith@email.com"
+                href="mailto:junndung2005@gmail.com"
                 className="text-muted hover:text-primary transition-colors"
               >
                 <Mail className="w-5 h-5" />

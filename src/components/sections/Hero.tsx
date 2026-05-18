@@ -5,10 +5,10 @@ import { FadeIn, TypingText, StaggerContainer, itemVariants } from '../animation
 import { Button } from '../ui/Button';
 
 const floatingCards = [
-  { icon: Code2, label: 'Backend Dev', x: '10%', y: '20%', delay: 0.2 },
-  { icon: Database, label: 'Databases', x: '85%', y: '15%', delay: 0.4 },
-  { icon: Globe, label: 'Web Apps', x: '80%', y: '70%', delay: 0.6 },
-  { icon: Smartphone, label: 'Mobile', x: '15%', y: '75%', delay: 0.8 },
+  { icon: Code2, label: 'Backend Dev', x: '2%', y: '8%', delay: 0.2 },
+  { icon: Database, label: 'Databases', x: '92%', y: '8%', delay: 0.4 },
+  { icon: Globe, label: 'Web Apps', x: '90%', y: '85%', delay: 0.6 },
+  { icon: Smartphone, label: 'Mobile', x: '4%', y: '88%', delay: 0.8 },
 ];
 
 export function Hero() {
@@ -65,7 +65,7 @@ export function Hero() {
       {floatingCards.map((card, index) => (
         <motion.div
           key={index}
-          className="absolute hidden lg:flex items-center gap-3 bg-surface2/80 backdrop-blur-sm border border-white/5 rounded-2xl px-4 py-3"
+          className="absolute hidden lg:flex items-center gap-3 bg-surface2/80 backdrop-blur-sm border border-white/5 rounded-2xl px-4 py-3 z-20"
           style={{ left: card.x, top: card.y }}
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1, y: [0, -10, 0] }}

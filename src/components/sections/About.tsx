@@ -1,3 +1,5 @@
+import { projects } from '../../data/projects';
+import { profile } from '../../data/profile';
 import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { GraduationCap, Award, Heart } from 'lucide-react';
@@ -48,7 +50,7 @@ export function About() {
           <FadeIn delay={0.2}>
             <div className="space-y-6">
               <p className="text-base md:text-lg text-muted/80 leading-relaxed">
-                I'm <span className="text-primary font-medium">Nguyen Viet Dung</span>, a 3rd-year Information Technology student 
+                I'm <span className="text-primary font-medium">{profile.name}</span>, an Information Technology student 
                 at the <span className="text-accent">University of Transport Ho Chi Minh City (UTH)</span>. 
                 My journey in tech started with curiosity about how software systems work, and it has grown into 
                 a deep passion for building impactful digital solutions.
@@ -84,7 +86,7 @@ export function About() {
                     <div>
                       <h3 className="text-lg font-semibold text-primary mb-1">Education</h3>
                       <p className="text-sm text-muted">University of Transport Ho Chi Minh City</p>
-                      <p className="text-xs text-accent mt-1">Bachelor of IT • 3rd Year</p>
+                      <p className="text-xs text-accent mt-1">Bachelor of IT • 2023–Present</p>
                     </div>
                   </div>
                 </motion.div>
@@ -136,8 +138,8 @@ export function About() {
         <FadeIn delay={0.6} className="mt-16 md:mt-20">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
             {[
-              { value: '3rd', label: 'Year IT Student' },
-              { value: '5+', label: 'Projects Built' },
+              { value: 'IT', label: 'Student' },
+              { value: String(projects.length), label: 'Projects Built' },
               { value: '5+', label: 'Technologies' },
               { value: '∞', label: 'Curiosity' },
             ].map((stat, index) => (

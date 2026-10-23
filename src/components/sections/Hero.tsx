@@ -1,3 +1,5 @@
+import { projects } from '../../data/projects';
+import { profile } from '../../data/profile';
 import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Github, Code2, Database, Globe, Smartphone } from 'lucide-react';
@@ -5,10 +7,10 @@ import { FadeIn, TypingText, StaggerContainer, itemVariants } from '../animation
 import { Button } from '../ui/Button';
 
 const floatingCards = [
-  { icon: Code2, label: 'Backend Dev', x: '2%', y: '8%', delay: 0.2 },
-  { icon: Database, label: 'Databases', x: '92%', y: '8%', delay: 0.4 },
-  { icon: Globe, label: 'Web Apps', x: '90%', y: '85%', delay: 0.6 },
-  { icon: Smartphone, label: 'Mobile', x: '4%', y: '88%', delay: 0.8 },
+  { icon: Code2, label: 'Backend Dev', left: '2%', right: undefined, y: '10%', delay: 0.2 },
+  { icon: Database, label: 'Databases', left: undefined, right: '2%', y: '10%', delay: 0.4 },
+  { icon: Globe, label: 'Web Apps', left: undefined, right: '2%', y: '85%', delay: 0.6 },
+  { icon: Smartphone, label: 'Mobile', left: '4%', right: undefined, y: '88%', delay: 0.8 },
 ];
 
 export function Hero() {
@@ -65,8 +67,8 @@ export function Hero() {
       {floatingCards.map((card, index) => (
         <motion.div
           key={index}
-          className="absolute hidden lg:flex items-center gap-3 bg-surface2/80 backdrop-blur-sm border border-white/5 rounded-2xl px-4 py-3 z-20"
-          style={{ left: card.x, top: card.y }}
+          className="absolute hidden lg:flex items-center gap-3 bg-surface2/80 backdrop-blur-sm border border-white/5 rounded-2xl px-4 py-3 z-0 pointer-events-none"
+          style={{ left: card.left, right: card.right, top: card.y }}
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1, y: [0, -10, 0] }}
           transition={{ delay: card.delay + 1, duration: 0.6, ease: [0.16, 1, 0.3, 1], repeat: Infinity, repeatType: 'reverse' }}
@@ -113,7 +115,7 @@ export function Hero() {
                 className="text-lg sm:text-xl md:text-2xl text-muted mb-6 min-h-[2rem]"
               >
                 <TypingText
-                  text="3rd-Year IT Student • Software Developer"
+                  text={profile.headline}
                   delay={0.5}
                   speed={40}
                 />
@@ -188,7 +190,7 @@ export function Hero() {
                     <div className="flex gap-2">
                       <span className="text-primary">name</span>
                       <span className="text-muted">:</span>
-                      <span className="text-green-400">"Nguyen Viet Dung"</span>
+                      <span className="text-green-400">"{profile.name}"</span>
                     </div>
                     <div className="flex gap-2">
                       <span className="text-primary">role</span>
@@ -212,12 +214,12 @@ export function Hero() {
                 {/* Stats Row */}
                 <div className="mt-6 pt-6 border-t border-white/5 grid grid-cols-3 gap-4">
                   <div className="text-center">
-                    <div className="text-2xl font-bold text-accent">5+</div>
+                    <div className="text-2xl font-bold text-accent">{projects.length}</div>
                     <div className="text-xs text-muted">Projects</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-2xl font-bold text-accent">3rd</div>
-                    <div className="text-xs text-muted">Year IT</div>
+                    <div className="text-2xl font-bold text-accent">IT</div>
+                    <div className="text-xs text-muted">Student</div>
                   </div>
                   <div className="text-center">
                     <div className="text-2xl font-bold text-accent">5+</div>
@@ -228,7 +230,8 @@ export function Hero() {
 
               {/* GitHub Link */}
               <motion.a
-                href="https://github.com/JunnDung"
+                href={profile.github}
+                aria-label="GitHub profile"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="absolute -bottom-4 -right-4 bg-surface3 border border-white/5 rounded-2xl p-4 hover:bg-surface2 transition-colors"

@@ -1,3 +1,4 @@
+import { profile } from '../../data/profile';
 import { motion } from 'framer-motion';
 import { Github, Mail, Linkedin, Facebook } from 'lucide-react';
 import { FadeIn, StaggerContainer, itemVariants } from '../animations';
@@ -32,28 +33,28 @@ export function Contact() {
               icon: Github,
               label: 'GitHub',
               value: '@JunnDung',
-              href: 'https://github.com/JunnDung',
+              href: profile.github,
               color: 'hover:bg-surface2 hover:border-white/10',
             },
             {
               icon: Linkedin,
               label: 'LinkedIn',
-              value: 'Dung Nguyen Viet',
-              href: 'https://www.linkedin.com/in/junndung/',
+              value: profile.name,
+              href: profile.linkedin,
               color: 'hover:bg-blue-500/10 hover:border-blue-500/20',
             },
             {
               icon: Mail,
               label: 'Email',
-              value: 'junndung2005@gmail.com',
-              href: 'mailto:junndung2005@gmail.com',
+              value: profile.email,
+              href: `mailto:${profile.email}`,
               color: 'hover:bg-red-500/10 hover:border-red-500/20',
             },
             {
               icon: Facebook,
               label: 'Facebook',
               value: 'Dũng Nguyễn',
-              href: 'https://www.facebook.com/Junn2005/',
+              href: profile.facebook,
               color: 'hover:bg-blue-500/10 hover:border-blue-500/20',
             },
           ].map((contact) => (
@@ -71,7 +72,7 @@ export function Contact() {
                 <contact.icon className="w-5 h-5 text-accent" />
               </div>
               <h3 className="font-medium text-primary mb-1">{contact.label}</h3>
-              <p className="text-sm text-muted truncate">{contact.value}</p>
+              <p className="text-sm text-muted break-words">{contact.value}</p>
             </motion.a>
           ))}
         </StaggerContainer>
@@ -79,12 +80,12 @@ export function Contact() {
         {/* CTA */}
         <FadeIn delay={0.4} className="text-center">
           <p className="text-muted mb-6">
-            Prefer email? Reach out directly at:
+            Prefer email? Reach out directly at {profile.email}
           </p>
           <Button 
             variant="secondary" 
             size="lg"
-            href="mailto:junndung2005@gmail.com"
+            href={`mailto:${profile.email}`}
             icon="arrow"
           >
             Send me a message
@@ -95,37 +96,37 @@ export function Contact() {
         <footer className="mt-24 pt-8 border-t border-white/5">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
             <div>
-              <p className="text-lg font-semibold text-primary">Dung Nguyen</p>
-              <p className="text-sm text-muted">3rd-Year IT Student • UTH</p>
+              <p className="text-lg font-semibold text-primary">{profile.name}</p>
+              <p className="text-sm text-muted">IT Student • UTH</p>
             </div>
             
             <div className="flex items-center gap-6">
               <a
-                href="https://github.com/JunnDung"
+                href={profile.github}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-muted hover:text-primary transition-colors"
               >
-                <Github className="w-5 h-5" />
+                <Github aria-hidden="true" className="w-5 h-5" /><span className="sr-only">GitHub profile</span>
               </a>
               <a
-                href="mailto:junndung2005@gmail.com"
+                href={`mailto:${profile.email}`}
                 className="text-muted hover:text-primary transition-colors"
               >
-                <Mail className="w-5 h-5" />
+                <Mail aria-hidden="true" className="w-5 h-5" /><span className="sr-only">Send email</span>
               </a>
               <a
-                href="https://www.facebook.com/Junn2005/"
+                href={profile.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-muted hover:text-primary transition-colors"
               >
-                <Facebook className="w-5 h-5" />
+                <Facebook aria-hidden="true" className="w-5 h-5" /><span className="sr-only">Facebook profile</span>
               </a>
             </div>
 
             <p className="text-xs text-muted/60">
-              © 2026 Dung Nguyen. Built with React & Tailwind.
+              © {new Date().getFullYear()} {profile.name}. Built with React & Tailwind.
             </p>
           </div>
         </footer>

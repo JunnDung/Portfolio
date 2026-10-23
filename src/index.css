@@ -97,3 +97,6 @@ body {
   box-shadow: 0 0 30px rgba(207, 202, 183, 0.1);
   border-color: rgba(207, 202, 183, 0.3);
 }
+
+/* Keep section headings visible below the fixed navigation. */
+section[id] { scroll-margin-top: 5rem; }

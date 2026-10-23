@@ -1,6 +1,23 @@
+import { useEffect, useState } from 'react';
 import { Hero, About, TechStack, Projects, Experience, Contact } from './components/sections';
 
+const sections = ['About', 'Tech', 'Projects', 'Experience', 'Contact'];
+
 function App() {
+  const [menuOpen, setMenuOpen] = useState(false);
+  useEffect(() => {
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setMenuOpen(false);
+    };
+    const desktop = window.matchMedia('(min-width: 768px)');
+    const closeOnDesktop = () => { if (desktop.matches) setMenuOpen(false); };
+    window.addEventListener('keydown', closeOnEscape);
+    desktop.addEventListener('change', closeOnDesktop);
+    return () => {
+      window.removeEventListener('keydown', closeOnEscape);
+      desktop.removeEventListener('change', closeOnDesktop);
+    };
+  }, []);
   return (
     <div className="relative min-h-screen bg-background noise">
       {/* Navigation */}
@@ -14,7 +31,7 @@ function App() {
 
             {/* Desktop Nav */}
             <div className="hidden md:flex items-center gap-8">
-              {['About', 'Tech', 'Projects', 'Experience', 'Contact'].map((item) => (
+              {sections.map((item) => (
                 <a
                   key={item}
                   href={`#${item.toLowerCase()}`}
@@ -26,12 +43,17 @@ function App() {
             </div>
 
             {/* Mobile Menu Button */}
-            <button className="md:hidden p-2 text-muted hover:text-primary">
+            <button type="button" aria-label={menuOpen ? "Close navigation" : "Open navigation"} aria-expanded={menuOpen} aria-controls="mobile-navigation" onClick={() => setMenuOpen(!menuOpen)} className="md:hidden p-2 text-muted hover:text-primary">
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
               </svg>
             </button>
           </div>
+        </div>
+        <div id="mobile-navigation" hidden={!menuOpen} className="md:hidden border-t border-white/5 px-4 py-3 bg-background">
+          {sections.map((item) => (
+            <a key={item} href={`#${item.toLowerCase()}`} onClick={() => setMenuOpen(false)} className="block py-3 text-muted hover:text-primary">{item}</a>
+          ))}
         </div>
       </nav>
 

@@ -119,7 +119,7 @@ export const timeline = {
     school: 'University of Transport Ho Chi Minh City (UTH)',
     degree: 'Bachelor of Information Technology',
     period: '2023 - Present',
-    description: 'Currently in 3rd year, focusing on software engineering, database systems, and modern web technologies.',
+    description: 'Studying Information Technology, focusing on software engineering, database systems, and modern web technologies.',
   },
   experience: [
     {

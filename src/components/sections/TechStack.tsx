@@ -1,10 +1,12 @@
 import { motion } from 'framer-motion';
-import { Code, Layers, Database, Wrench } from 'lucide-react';
+import { Code, Layers, Database, Wrench, Brain, Search } from 'lucide-react';
 import { FadeIn, StaggerContainer, itemVariants } from '../animations';
-import { techStack } from '../../data/projects';
+import { techStack, learningHighlights } from '../../data/projects';
 
 const categoryIcons = {
   languages: Code,
+  ai: Brain,
+  llm: Search,
   frontend: Layers,
   backend: Database,
   tools: Wrench,
@@ -12,6 +14,8 @@ const categoryIcons = {
 
 const categoryLabels = {
   languages: 'Programming Languages',
+  ai: 'Machine Learning & Computer Vision',
+  llm: 'LLM Applications & Retrieval',
   frontend: 'Frontend',
   backend: 'Backend & Database',
   tools: 'Tools & Platforms',
@@ -33,7 +37,7 @@ export function TechStack() {
             Technologies I Work With
           </h2>
           <p className="text-base md:text-lg text-muted/80 mt-4 max-w-2xl mx-auto">
-            The tools and technologies I've learned and used throughout my journey as a software developer.
+            Tools I've applied in AI experiments and software projects, alongside the concepts I'm continuing to learn.
           </p>
         </FadeIn>
 
@@ -88,6 +92,25 @@ export function TechStack() {
               </FadeIn>
             );
           })}
+        </div>
+
+        <div className="mt-12 md:mt-16">
+          <h3 className="text-2xl font-semibold text-primary mb-6">Recently Applied in Projects</h3>
+          <div className="grid md:grid-cols-3 gap-6">
+            {learningHighlights.map((item) => (
+              <a
+                key={item.title}
+                href={item.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-surface2 border border-white/5 rounded-2xl p-6 hover:border-accent/30 transition-colors"
+              >
+                <h4 className="text-lg font-semibold text-accent mb-3">{item.title}</h4>
+                <p className="text-sm text-muted leading-relaxed">{item.description}</p>
+                <span className="inline-block mt-4 text-xs text-accent">View project evidence ↗</span>
+              </a>
+            ))}
+          </div>
         </div>
 
         {/* Learning Note */}

@@ -22,7 +22,7 @@ export function Contact() {
             {' '}together.
           </h2>
           <p className="text-base md:text-lg text-muted/80 max-w-xl mx-auto">
-            Whether it's an internship opportunity, a project collaboration, or just a conversation about software development — I'd love to hear from you.
+            Whether it's an AI Engineer internship, a project collaboration, or a conversation about computer vision and LLM applications — I'd love to hear from you.
           </p>
         </FadeIn>
 
@@ -97,7 +97,7 @@ export function Contact() {
           <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
             <div>
               <p className="text-lg font-semibold text-primary">{profile.name}</p>
-              <p className="text-sm text-muted">IT Student • UTH</p>
+              <p className="text-sm text-muted">{profile.headline}</p>
             </div>
             
             <div className="flex items-center gap-6">

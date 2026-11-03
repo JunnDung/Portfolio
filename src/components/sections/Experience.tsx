@@ -7,7 +7,7 @@ export function Experience() {
   return (
     <section
       id="experience"
-      className="relative py-24 md:py-32 lg:py-40 bg-surface"
+      className="relative py-24 md:py-32 lg:py-40 bg-surface overflow-hidden"
     >
       <div className="relative max-w-6xl mx-auto px-4 md:px-6 lg:px-8">
         {/* Section Header */}
@@ -19,7 +19,7 @@ export function Experience() {
             Education & Experience
           </h2>
           <p className="text-base md:text-lg text-muted/80 max-w-2xl mx-auto">
-            My academic path and the experiences that have shaped my journey as a developer.
+            Learning AI engineering through personal applications, team projects and university coursework.
           </p>
         </FadeIn>
 
@@ -138,12 +138,12 @@ export function Experience() {
               Looking Forward
             </h3>
             <p className="text-base md:text-lg text-muted/80 leading-relaxed mb-6">
-              I'm actively seeking <span className="text-accent font-medium">internship opportunities</span> in software development 
-              where I can apply my skills, learn from experienced developers, and contribute to meaningful projects. 
-              I'm particularly interested in backend development, database systems, and full-stack applications.
+              I'm seeking <span className="text-accent font-medium">AI Engineer internship opportunities</span> where
+              I can apply Python, computer vision and RAG, learn from experienced engineers, and contribute
+              to useful AI applications with clear evaluation and reliable software foundations.
             </p>
             <div className="flex flex-wrap gap-3 justify-center">
-              {['Backend Development', 'Full-Stack', 'Database Systems', 'APIs & Microservices'].map((goal) => (
+              {['Computer Vision', 'LLM & RAG', 'Model Evaluation', 'AI Application Engineering'].map((goal) => (
                 <span
                   key={goal}
                   className="px-4 py-2 bg-accent/10 border border-accent/20 rounded-full text-sm text-accent"

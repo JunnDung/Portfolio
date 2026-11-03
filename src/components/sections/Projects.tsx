@@ -1,9 +1,11 @@
 import { motion } from 'framer-motion';
-import { Github, ExternalLink, Star, GitFork, ArrowUpRight } from 'lucide-react';
+import { Github, ExternalLink, LockKeyhole, ArrowUpRight } from 'lucide-react';
 import { FadeIn, StaggerContainer, itemVariants } from '../animations';
 import { projects } from '../../data/projects';
 
 const categoryColors = {
+  ai: 'bg-cyan-500/10 text-cyan-400 border-cyan-500/20',
+  rag: 'bg-amber-500/10 text-amber-400 border-amber-500/20',
   backend: 'bg-blue-500/10 text-blue-400 border-blue-500/20',
   web: 'bg-green-500/10 text-green-400 border-green-500/20',
   mobile: 'bg-purple-500/10 text-purple-400 border-purple-500/20',
@@ -33,20 +35,20 @@ export function Projects() {
         {/* Section Header */}
         <FadeIn className="text-center mb-16 md:mb-20">
           <span className="inline-block text-xs md:text-sm uppercase tracking-[0.2em] text-accent mb-4">
-            Featured Projects
+            Selected AI Projects
           </span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-primary mb-4">
-            Things I've Built
+            Projects & Contributions
           </h2>
           <p className="text-base md:text-lg text-muted/80 max-w-2xl mx-auto">
-            A selection of projects I've worked on, from academic assignments to personal explorations.
+            From model training and evaluation to APIs and dashboards: recent work in computer vision, NLP and retrieval-augmented generation.
           </p>
         </FadeIn>
 
         {/* Featured Projects Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
           {featuredProjects.map((project, index) => (
-            <FadeIn key={project.id} delay={index * 0.1}>
+            <FadeIn key={project.id} delay={index * 0.1} className="h-full">
               <ProjectCard project={project} />
             </FadeIn>
           ))}
@@ -54,7 +56,7 @@ export function Projects() {
 
         {/* Other Projects */}
         <div className="mb-12">
-          <h3 className="text-xl font-semibold text-primary mb-6">Other Projects</h3>
+          <h3 className="text-xl font-semibold text-primary mb-6">More Software & Coursework</h3>
           <StaggerContainer staggerDelay={0.05}>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {otherProjects.map((project) => (
@@ -70,18 +72,39 @@ export function Projects() {
                         {project.name}
                       </h4>
                     </div>
-                    <a
-                      href={project.githubUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-muted hover:text-primary transition-colors"
-                    >
-                      <Github className="w-4 h-4" />
-                    </a>
+                    <div className="flex items-center gap-2 shrink-0">
+                      {project.githubUrl ? (
+                        <a
+                          href={project.githubUrl}
+                          aria-label={`${project.name} on GitHub`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-muted hover:text-primary transition-colors"
+                        >
+                          <Github className="w-4 h-4" />
+                        </a>
+                      ) : (
+                        <span className="text-xs text-muted">Source unavailable</span>
+                      )}
+                      {project.liveUrl && (
+                        <a
+                          href={project.liveUrl}
+                          aria-label={`${project.name} live demo`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-muted hover:text-accent transition-colors"
+                        >
+                          <ExternalLink className="w-4 h-4" />
+                        </a>
+                      )}
+                    </div>
                   </div>
                   <p className="text-sm text-muted line-clamp-2 mb-3">
                     {project.description}
                   </p>
+                  {project.contribution && (
+                    <p className="text-xs text-accent mb-3">{project.contribution}</p>
+                  )}
                   <div className="flex flex-wrap gap-1.5">
                     {project.technologies.slice(0, 3).map((tech) => (
                       <span
@@ -121,7 +144,7 @@ export function Projects() {
 function ProjectCard({ project }: { project: typeof projects[0] }) {
   return (
     <motion.div
-      className="group bg-surface2 border border-white/5 rounded-3xl overflow-hidden card-glow h-full"
+      className="group bg-surface2 border border-white/5 rounded-3xl overflow-hidden card-glow h-full flex flex-col"
       whileHover={{ y: -4 }}
       transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
     >
@@ -167,32 +190,33 @@ function ProjectCard({ project }: { project: typeof projects[0] }) {
       </div>
 
       {/* Card Footer */}
-      <div className="px-6 py-4 border-t border-white/5 flex items-center justify-between">
-        <div className="flex items-center gap-4 text-xs text-muted">
-          <div className="flex items-center gap-1">
-            <Star className="w-3.5 h-3.5" />
-            <span>{project.stars}</span>
-          </div>
-          <div className="flex items-center gap-1">
-            <GitFork className="w-3.5 h-3.5" />
-            <span>{project.forks}</span>
-          </div>
-        </div>
+      <div className="mt-auto px-6 py-4 border-t border-white/5 flex flex-wrap gap-3 items-center justify-between">
+        <span className="text-xs text-muted">{project.contribution}</span>
 
         <div className="flex items-center gap-2">
-          <motion.a
-            href={project.githubUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="p-2 bg-surface3 rounded-lg hover:bg-surface hover:text-primary transition-colors"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <Github className="w-4 h-4" />
-          </motion.a>
+          {project.private ? (
+            <span className="inline-flex items-center gap-2 text-xs text-muted">
+              <LockKeyhole aria-hidden="true" className="w-4 h-4" />
+              GitHub (Private)
+            </span>
+          ) : (
+            <motion.a
+              href={project.githubUrl}
+              aria-label={`${project.name} source on GitHub`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 p-2 bg-surface3 rounded-lg text-xs hover:bg-surface hover:text-primary transition-colors"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <Github aria-hidden="true" className="w-4 h-4" />
+              Source
+            </motion.a>
+          )}
           {project.liveUrl && (
             <motion.a
               href={project.liveUrl}
+              aria-label={`${project.name} live demo`}
               target="_blank"
               rel="noopener noreferrer"
               className="p-2 bg-surface3 rounded-lg hover:bg-surface hover:text-accent transition-colors"

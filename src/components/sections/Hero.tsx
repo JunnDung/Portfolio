@@ -2,15 +2,15 @@ import { projects } from '../../data/projects';
 import { profile } from '../../data/profile';
 import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { Github, Code2, Database, Globe, Smartphone } from 'lucide-react';
+import { Github, Code2, Database, Eye, Brain } from 'lucide-react';
 import { FadeIn, TypingText, StaggerContainer, itemVariants } from '../animations';
 import { Button } from '../ui/Button';
 
 const floatingCards = [
-  { icon: Code2, label: 'Backend Dev', left: '2%', right: undefined, y: '10%', delay: 0.2 },
-  { icon: Database, label: 'Databases', left: undefined, right: '2%', y: '10%', delay: 0.4 },
-  { icon: Globe, label: 'Web Apps', left: undefined, right: '2%', y: '85%', delay: 0.6 },
-  { icon: Smartphone, label: 'Mobile', left: '4%', right: undefined, y: '88%', delay: 0.8 },
+  { icon: Eye, label: 'Computer Vision', left: '2%', right: undefined, y: '10%', delay: 0.2 },
+  { icon: Brain, label: 'LLM & RAG', left: undefined, right: '2%', y: '10%', delay: 0.4 },
+  { icon: Code2, label: 'Python & APIs', left: undefined, right: '2%', y: '85%', delay: 0.6 },
+  { icon: Database, label: 'Data & Evaluation', left: '4%', right: undefined, y: '88%', delay: 0.8 },
 ];
 
 export function Hero() {
@@ -112,7 +112,7 @@ export function Hero() {
               {/* Subheading with typing */}
               <motion.div
                 variants={itemVariants}
-                className="text-lg sm:text-xl md:text-2xl text-muted mb-6 min-h-[2rem]"
+                className="text-lg sm:text-xl md:text-2xl text-muted mb-6 min-h-[3.5rem] md:min-h-[4rem]"
               >
                 <TypingText
                   text={profile.headline}
@@ -126,8 +126,9 @@ export function Hero() {
                 variants={itemVariants}
                 className="text-base md:text-lg text-muted/80 max-w-xl mx-auto lg:mx-0 mb-8 leading-relaxed"
               >
-                Building modern software experiences with clean architecture, scalable systems, and thoughtful design. 
-                Passionate about backend development, databases, and creating impactful digital products.
+                Building AI applications from data to working demos: Vietnamese OCR, vehicle tracking,
+                restricted-zone alerts and source-grounded library search. Learning through model
+                fine-tuning, evaluation and practical software engineering.
               </motion.p>
 
               {/* CTA Buttons */}
@@ -147,7 +148,7 @@ export function Hero() {
             {/* Tech Badges */}
             <FadeIn delay={1.2} className="mt-12">
               <div className="flex flex-wrap gap-3 justify-center lg:justify-start">
-                {['TypeScript', 'Java', 'React', 'Node.js', 'MySQL'].map((tech) => (
+                {['Python', 'PyTorch', 'YOLO', 'FastAPI', 'RAG'].map((tech) => (
                   <motion.span
                     key={tech}
                     className="px-3 py-1.5 bg-surface2 border border-white/5 rounded-full text-xs text-muted"
@@ -195,7 +196,7 @@ export function Hero() {
                     <div className="flex gap-2">
                       <span className="text-primary">role</span>
                       <span className="text-muted">:</span>
-                      <span className="text-green-400">"Software Developer"</span>
+                      <span className="text-green-400">"Aspiring AI Engineer"</span>
                     </div>
                     <div className="flex gap-2">
                       <span className="text-primary">university</span>
@@ -205,7 +206,7 @@ export function Hero() {
                     <div className="flex gap-2">
                       <span className="text-primary">passion</span>
                       <span className="text-muted">:</span>
-                      <span className="text-green-400">"Building software"</span>
+                      <span className="text-green-400">"Applied AI"</span>
                     </div>
                   </div>
                   <div><span className="text-primary">{'}'}</span><span className="text-primary">;</span></div>
@@ -247,7 +248,7 @@ export function Hero() {
 
       {/* Scroll Indicator */}
       <motion.div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
+        className="absolute hidden md:block bottom-8 left-1/2 -translate-x-1/2"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1.5, duration: 0.6 }}

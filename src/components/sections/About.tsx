@@ -33,7 +33,7 @@ export function About() {
             About Me
           </span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-primary leading-tight">
-            Building software with{' '}
+            Building AI applications with{' '}
             <span className="font-serif italic text-accent">logic</span>
             ,{' '}
             <span className="font-serif italic text-accent">creativity</span>
@@ -52,20 +52,19 @@ export function About() {
               <p className="text-base md:text-lg text-muted/80 leading-relaxed">
                 I'm <span className="text-primary font-medium">{profile.name}</span>, an Information Technology student 
                 at the <span className="text-accent">University of Transport Ho Chi Minh City (UTH)</span>. 
-                My journey in tech started with curiosity about how software systems work, and it has grown into 
-                a deep passion for building impactful digital solutions.
+                I'm developing toward an AI Engineer role by combining machine learning experiments
+                with the software needed to make them usable.
               </p>
               <p className="text-base md:text-lg text-muted/80 leading-relaxed">
-                Currently, I'm focused on mastering <span className="text-primary">backend development</span>,{' '}
-                <span className="text-primary">database systems</span>,{' '}
-                <span className="text-primary">algorithms</span>, and modern web technologies. I believe in 
-                learning by doing — which is why I spend my time building real projects beyond coursework.
+                My recent work focuses on <span className="text-primary">computer vision and OCR</span>,{' '}
+                <span className="text-primary">LLM applications and RAG</span>, and{' '}
+                <span className="text-primary">model evaluation</span>. I've fine-tuned YOLO detectors and OCR,
+                built tracking pipelines, and contributed retrieval and embedding experiments to a library chatbot.
               </p>
               <p className="text-base md:text-lg text-muted/80 leading-relaxed">
-                When I'm not coding, you'll find me exploring new technologies, contributing to open source, 
-                or thinking about how to solve problems more elegantly. My goal is to become a{' '}
-                <span className="text-accent font-medium">professional software engineer</span> who builds 
-                products that make a difference.
+                I connect inference to <span className="text-accent font-medium">FastAPI, databases and web dashboards</span>,
+                keep reproducible evaluation evidence, and document where prototypes still need validation.
+                My goal is to build useful AI systems and understand how they behave beyond a single demo.
               </p>
             </div>
           </FadeIn>
@@ -102,7 +101,7 @@ export function About() {
                     <div>
                       <h3 className="text-lg font-semibold text-primary mb-1">Focus Areas</h3>
                       <div className="flex flex-wrap gap-2 mt-2">
-                        {['Backend Development', 'Databases', 'Algorithms', 'Web Technologies'].map((item) => (
+                        {['Computer Vision', 'LLM & RAG', 'Model Evaluation', 'AI Applications'].map((item) => (
                           <span key={item} className="px-2 py-1 bg-surface3 rounded-lg text-xs text-muted">
                             {item}
                           </span>
@@ -123,8 +122,8 @@ export function About() {
                     <div>
                       <h3 className="text-lg font-semibold text-primary mb-1">Interests</h3>
                       <p className="text-sm text-muted">
-                        Clean Architecture • Microservices • System Design • 
-                        Problem Solving • Open Source
+                        Applied ML • Vietnamese NLP • Retrieval Quality •
+                        Reproducible Experiments • Open Source
                       </p>
                     </div>
                   </div>
@@ -139,7 +138,7 @@ export function About() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
             {[
               { value: 'IT', label: 'Student' },
-              { value: String(projects.length), label: 'Projects Built' },
+              { value: String(projects.length), label: 'Projects & Contributions' },
               { value: '5+', label: 'Technologies' },
               { value: '∞', label: 'Curiosity' },
             ].map((stat, index) => (

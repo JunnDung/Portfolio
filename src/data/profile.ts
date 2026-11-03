@@ -1,7 +1,7 @@
 export const profile = {
   name: 'Nguyen Viet Dung',
   shortName: 'Dung Nguyen',
-  headline: 'IT Student • Software Developer',
+  headline: 'Aspiring AI Engineer • Software Developer',
   email: 'junndung2005@gmail.com',
   github: 'https://github.com/JunnDung',
   linkedin: 'https://www.linkedin.com/in/junndung/',
